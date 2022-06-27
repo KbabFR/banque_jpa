@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import jakarta.persistence.*;
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Operation {
 	
 	@Id

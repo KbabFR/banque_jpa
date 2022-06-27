@@ -5,10 +5,18 @@ import java.util.List;
 import jakarta.persistence.*;
 
 @Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@SequenceGenerator(
+		name="seq_client",
+		sequenceName="seq_client",
+		initialValue = 1,
+		allocationSize =1)
 public class Compte {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(
+			strategy = GenerationType.SEQUENCE,
+			generator = "seq_client")
 	private Long id;
 
 	private String numero;
