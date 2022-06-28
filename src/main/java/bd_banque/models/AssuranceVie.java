@@ -29,7 +29,7 @@ public class AssuranceVie extends Compte{
 	
 	@Override
 	public String toString() {
-		return "AssuranceVie [dateFin=" + dateFin + ", taux=" + taux + "]";
+		return "AssuranceVie [dateFin=" + dateFin + ", taux=" + taux + super.toString() + " ]";
 	}
 
 	

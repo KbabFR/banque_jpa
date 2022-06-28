@@ -1,6 +1,6 @@
 package bd_banque.models;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import jakarta.persistence.*;
 
@@ -12,7 +12,7 @@ public class Operation {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private LocalDateTime date;
+	private LocalDate date;
 	
 	private Double montant;
 	
@@ -31,7 +31,7 @@ public class Operation {
 	 * @param montant
 	 * @param motif
 	 */
-	public Operation(LocalDateTime date, Double montant, String motif) {
+	public Operation(LocalDate date, Double montant, String motif) {
 		this.date = date;
 		this.montant = montant;
 		this.motif = motif;
@@ -60,14 +60,14 @@ public class Operation {
 	/**
 	 * @return the date
 	 */
-	public LocalDateTime getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
 	/**
-	 * @param date the date to set
+	 * @param localDate the date to set
 	 */
-	public void setDate(LocalDateTime date) {
-		this.date = date;
+	public void setDate(LocalDate localDate) {
+		this.date = localDate;
 	}
 	/**
 	 * @return the montant

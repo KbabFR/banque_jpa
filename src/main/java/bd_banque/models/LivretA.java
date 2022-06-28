@@ -20,10 +20,11 @@ public class LivretA extends Compte{
 		super();
 		this.taux = taux;
 	}
+	
 
 	@Override
 	public String toString() {
-		return "LivretA [taux=" + taux + "]";
+		return "LivretA [taux=" + taux + super.toString() + "]";
 	}
 
 	/**
