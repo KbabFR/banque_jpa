@@ -1,6 +1,6 @@
 package bd_banque.repositories;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 import bd_banque.models.Operation;
@@ -9,7 +9,7 @@ import jakarta.persistence.TypedQuery;
 
 public class OperationRepository {
 
-	public static void create(LocalDateTime date, Double montant, String motif) {
+	public static void create(LocalDate date, Double montant, String motif) {
 		Operation OperationToCreate = new Operation(date, montant, motif);
 		
 		EntityManager em = PersistenceHelper.getEntityManager();
