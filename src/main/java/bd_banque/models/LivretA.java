@@ -17,6 +17,7 @@ public class LivretA extends Compte{
 	 * @param taux
 	 */
 	public LivretA(Double taux) {
+		super();
 		this.taux = taux;
 	}
 

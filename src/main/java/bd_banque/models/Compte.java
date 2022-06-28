@@ -26,7 +26,7 @@ public class Compte {
 	@ManyToMany(mappedBy = "comptes")
 	private List<Client> clients;
 	
-	@OneToMany
+	@OneToMany(mappedBy = "compte")
 	private List<Operation> operations;
 
 	// Constructor without param

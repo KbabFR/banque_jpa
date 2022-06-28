@@ -17,6 +17,7 @@ public class Virement extends Operation{
 	 * @param beneficiaire
 	 */
 	public Virement(String beneficiaire) {
+		super();
 		this.beneficiaire = beneficiaire;
 	}
 

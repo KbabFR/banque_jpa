@@ -5,18 +5,13 @@ import jakarta.persistence.*;
 @Embeddable
 public class Adresse {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private int num;
 	
 	private String rue;
 	
 	private int codePostal;
 	
 	private String ville;
-	
-	@OneToOne(mappedBy = "adresse")
-	private Client client;
 	
 	
 	// Constructor without param
@@ -30,8 +25,8 @@ public class Adresse {
 	 * @param codePostal
 	 * @param ville
 	 */
-	public Adresse(Long id, String rue, int codePostal, String ville) {
-		this.id = id;
+	public Adresse(int num, String rue, int codePostal, String ville) {
+		this.num = num;
 		this.rue = rue;
 		this.codePostal = codePostal;
 		this.ville = ville;
@@ -40,24 +35,10 @@ public class Adresse {
 	
 	@Override
 	public String toString() {
-		return "Adresse [id=" + id + ", rue=" + rue + ", codePostal=" + codePostal + ", ville=" + ville + ", client="
-				+ client + "]";
+		return "Adresse [rue=" + rue + ", codePostal=" + codePostal + ", ville=" + ville + "]";
 	}
 
-	/**
-	 * @return the id
-	 */
-	public Long getId() {
-		return id;
-	}
-
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(Long id) {
-		this.id = id;
-	}
-
+	
 	/**
 	 * @return the rue
 	 */
@@ -101,17 +82,17 @@ public class Adresse {
 	}
 
 	/**
-	 * @return the client
+	 * @return the num
 	 */
-	public Client getClient() {
-		return client;
+	public int getNum() {
+		return num;
 	}
 
 	/**
-	 * @param client the client to set
+	 * @param num the num to set
 	 */
-	public void setClient(Client client) {
-		this.client = client;
+	public void setNum(int num) {
+		this.num = num;
 	}
 	
 	

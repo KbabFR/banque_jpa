@@ -18,7 +18,7 @@ public class Operation {
 	
 	private String motif;
 	
-	@OneToMany(mappedBy = "operations")
+	@ManyToOne
 	private Compte compte;
 
 	

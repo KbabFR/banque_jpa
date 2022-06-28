@@ -9,7 +9,7 @@ import jakarta.persistence.TypedQuery;
 
 public class ClientRepository {
 
-	public void Create(String nom, String prenom, LocalDate dateNaissance) {
+	public static void create(String nom, String prenom, LocalDate dateNaissance) {
 		Client clientToCreate = new Client(nom, prenom, dateNaissance);
 		
 		EntityManager em = PersistenceHelper.getEntityManager();
@@ -19,12 +19,12 @@ public class ClientRepository {
 		
 	}
 
-	public Client findById(Long id) {
+	public static Client findById(Long id) {
 
 		return PersistenceHelper.getEntityManager().find(Client.class, id);
 	}
 
-	public List<Client> findAll() {
+	public static List<Client> findAll() {
 
 		// On va chercher l'EM
         EntityManager em = PersistenceHelper.getEntityManager();
@@ -32,7 +32,7 @@ public class ClientRepository {
         // On commence une Query JPQL
         TypedQuery<Client> tq = em.createQuery(
                 // La requ�te JPQL
-                "SELECT p FROM Personne p",
+                "SELECT cl FROM Client cl",
                 // Le type de retour du resultat - en gros le FROM de la req
                 Client.class);
         
@@ -40,7 +40,7 @@ public class ClientRepository {
         return tq.getResultList();
 	}
 
-	public Client update(Client clientUpdated) {
+	public static Client update(Client clientUpdated) {
 
 		// utiliser merge
         // on peut aussi v�rifier que la personne a bien une ID
@@ -56,7 +56,7 @@ public class ClientRepository {
         return clientMerged;
 	}
 
-	public void delete(Long id) {
+	public static void delete(Long id) {
 
 		EntityManager em = PersistenceHelper.getEntityManager();
         PersistenceHelper.beginTx(em);

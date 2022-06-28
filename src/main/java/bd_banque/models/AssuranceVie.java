@@ -21,6 +21,7 @@ public class AssuranceVie extends Compte{
 	 * @param taux
 	 */
 	public AssuranceVie(LocalDate dateFin, Double taux) {
+		super();
 		this.dateFin = dateFin;
 		this.taux = taux;
 	}

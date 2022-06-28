@@ -2,57 +2,57 @@ package bd_banque.repositories;
 
 import java.util.List;
 
-import bd_banque.models.Banque;
+import bd_banque.models.LivretA;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 
-public class BanqueRepository {
+public class LivretARepository {
 
-	public static void create(String nom) {
-		Banque BanqueToCreate = new Banque(nom);
+	public static void create(Double taux) {
+		LivretA LivretAToCreate = new LivretA(taux);
 		
 		EntityManager em = PersistenceHelper.getEntityManager();
         PersistenceHelper.beginTx(em);
-        em.persist(BanqueToCreate);
+        em.persist(LivretAToCreate);
         PersistenceHelper.commitTxAndClose(em);
 		
 	}
 
-	public static Banque findById(Long id) {
+	public static LivretA findById(Long id) {
 
-		return PersistenceHelper.getEntityManager().find(Banque.class, id);
+		return PersistenceHelper.getEntityManager().find(LivretA.class, id);
 	}
 
-	public static List<Banque> findAll() {
+	public static List<LivretA> findAll() {
 
 		// On va chercher l'EM
         EntityManager em = PersistenceHelper.getEntityManager();
         
         // On commence une Query JPQL
-        TypedQuery<Banque> tq = em.createQuery(
+        TypedQuery<LivretA> tq = em.createQuery(
                 // La requ�te JPQL
-                "SELECT b FROM Banque b",
+                "SELECT la FROM LivretA la",
                 // Le type de retour du resultat - en gros le FROM de la req
-                Banque.class);
+                LivretA.class);
         
         // Execute la requ�te et retourne LISTE de resultats
         return tq.getResultList();
 	}
 
-	public static Banque update(Banque BanqueUpdated) {
+	public static LivretA update(LivretA LivretAUpdated) {
 
 		// utiliser merge
         // on peut aussi v�rifier que la personne a bien une ID
         // et refuser la mise � jour si elle n'en a pas (optionnel)
-        if (BanqueUpdated == null || BanqueUpdated.getId() == null) {
+        if (LivretAUpdated == null || LivretAUpdated.getId() == null) {
             throw new RuntimeException();
         }
 
         EntityManager em = PersistenceHelper.getEntityManager();
         PersistenceHelper.beginTx(em);
-        Banque BanqueMerged = em.merge(BanqueUpdated);
+        LivretA LivretAMerged = em.merge(LivretAUpdated);
         PersistenceHelper.commitTxAndClose(em);
-        return BanqueMerged;
+        return LivretAMerged;
 	}
 
 	public static void delete(Long id) {
@@ -61,7 +61,7 @@ public class BanqueRepository {
         PersistenceHelper.beginTx(em);
 
         // 1ere �tape est de "find" la personne
-        Banque personneToDelete = em.find(Banque.class, id);
+        LivretA personneToDelete = em.find(LivretA.class, id);
         //  et de v�rifier si elle existe
         if (personneToDelete != null) {
             // 2nd �tape = delete
@@ -69,5 +69,7 @@ public class BanqueRepository {
         }
         PersistenceHelper.commitTxAndClose(em);
 		
-	}
+	}	
+	
+
 }

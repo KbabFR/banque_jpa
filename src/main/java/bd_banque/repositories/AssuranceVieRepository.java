@@ -1,58 +1,59 @@
 package bd_banque.repositories;
 
+import java.time.LocalDate;
 import java.util.List;
 
-import bd_banque.models.Banque;
+import bd_banque.models.AssuranceVie;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 
-public class BanqueRepository {
+public class AssuranceVieRepository {
 
-	public static void create(String nom) {
-		Banque BanqueToCreate = new Banque(nom);
+	public static void create(LocalDate dateFin, Double taux) {
+		AssuranceVie AssuranceVieToCreate = new AssuranceVie(dateFin, taux);
 		
 		EntityManager em = PersistenceHelper.getEntityManager();
         PersistenceHelper.beginTx(em);
-        em.persist(BanqueToCreate);
+        em.persist(AssuranceVieToCreate);
         PersistenceHelper.commitTxAndClose(em);
 		
 	}
 
-	public static Banque findById(Long id) {
+	public static AssuranceVie findById(Long id) {
 
-		return PersistenceHelper.getEntityManager().find(Banque.class, id);
+		return PersistenceHelper.getEntityManager().find(AssuranceVie.class, id);
 	}
 
-	public static List<Banque> findAll() {
+	public static List<AssuranceVie> findAll() {
 
 		// On va chercher l'EM
         EntityManager em = PersistenceHelper.getEntityManager();
         
         // On commence une Query JPQL
-        TypedQuery<Banque> tq = em.createQuery(
+        TypedQuery<AssuranceVie> tq = em.createQuery(
                 // La requ�te JPQL
-                "SELECT b FROM Banque b",
+                "SELECT av FROM AssuranceVie av",
                 // Le type de retour du resultat - en gros le FROM de la req
-                Banque.class);
+                AssuranceVie.class);
         
         // Execute la requ�te et retourne LISTE de resultats
         return tq.getResultList();
 	}
 
-	public static Banque update(Banque BanqueUpdated) {
+	public static AssuranceVie update(AssuranceVie AssuranceVieUpdated) {
 
 		// utiliser merge
         // on peut aussi v�rifier que la personne a bien une ID
         // et refuser la mise � jour si elle n'en a pas (optionnel)
-        if (BanqueUpdated == null || BanqueUpdated.getId() == null) {
+        if (AssuranceVieUpdated == null || AssuranceVieUpdated.getId() == null) {
             throw new RuntimeException();
         }
 
         EntityManager em = PersistenceHelper.getEntityManager();
         PersistenceHelper.beginTx(em);
-        Banque BanqueMerged = em.merge(BanqueUpdated);
+        AssuranceVie AssuranceVieMerged = em.merge(AssuranceVieUpdated);
         PersistenceHelper.commitTxAndClose(em);
-        return BanqueMerged;
+        return AssuranceVieMerged;
 	}
 
 	public static void delete(Long id) {
@@ -61,7 +62,7 @@ public class BanqueRepository {
         PersistenceHelper.beginTx(em);
 
         // 1ere �tape est de "find" la personne
-        Banque personneToDelete = em.find(Banque.class, id);
+        AssuranceVie personneToDelete = em.find(AssuranceVie.class, id);
         //  et de v�rifier si elle existe
         if (personneToDelete != null) {
             // 2nd �tape = delete
@@ -69,5 +70,7 @@ public class BanqueRepository {
         }
         PersistenceHelper.commitTxAndClose(em);
 		
-	}
+	}	
+	
+
 }

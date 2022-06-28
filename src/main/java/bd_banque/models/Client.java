@@ -5,6 +5,7 @@ import java.util.List;
 
 import jakarta.persistence.*;
 
+@Entity
 public class Client {
 	
 	@Id
@@ -140,14 +141,14 @@ public class Client {
 	/**
 	 * @return the compte
 	 */
-	public List<Compte> getCompte() {
+	public List<Compte> getComptes() {
 		return comptes;
 	}
 
 	/**
 	 * @param compte the compte to set
 	 */
-	public void setCompte(List<Compte> compte) {
+	public void setComptes(List<Compte> compte) {
 		this.comptes = compte;
 	}
 	
